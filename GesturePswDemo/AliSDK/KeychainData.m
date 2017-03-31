@@ -7,41 +7,23 @@
 //
 
 #import "KeychainData.h"
-#import "KeychainItemWrapper.h"
-
-
-
 #define KEYCHAIN_KEY  @"password_slider"
+
+
 
 @implementation KeychainData
 
 
-+ (void)setObject:(id)object forKey:(id)key
-{
-    KeychainItemWrapper *keyChain = [[KeychainItemWrapper alloc] initWithIdentifier:[NSString stringWithFormat:@"a%@&&a", key] accessGroup:nil];
-    [keyChain setObject:object forKey:(__bridge id)kSecAttrAccount];// 上面两行用来标识一个Item
-    
-    /**
-     
-     forKey:(id)kSecAttrAccount];  
-     forKey:(id)kSecValueData];
-     
-     
-     */
-    
++ (void)setObject:(id)object forKey:(id)key{
+    [[NSUserDefaults standardUserDefaults] setObject:object forKey:key];
 }
 
-+ (id)objectForKey:(id)key
-{
-    KeychainItemWrapper *keyChain = [[KeychainItemWrapper alloc] initWithIdentifier:[NSString stringWithFormat:@"a%@&&a", key] accessGroup:nil];
-    id a = [keyChain objectForKey:(__bridge id)kSecAttrAccount];
-    return a;
++ (id)objectForKey:(id)key{
+    return [[NSUserDefaults standardUserDefaults] objectForKey:key];
 }
 
-+ (void)removeObjectForKey:(id)key
-{
-    KeychainItemWrapper *keyChain = [[KeychainItemWrapper alloc] initWithIdentifier:[NSString stringWithFormat:@"a%@&&a", key] accessGroup:nil];
-    [keyChain resetKeychainItem];
++ (void)removeObjectForKey:(id)key{
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
 }
 
 

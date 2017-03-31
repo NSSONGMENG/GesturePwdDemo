@@ -25,22 +25,13 @@
 
 #define SUBITEMTOTALWH 52.f   // 整个subitem的大小
 #define SUBITEMWH      12.f   //单个subitem的大小
-#define SUBITEM_TOP    86.5f   //整个的subitem的顶点位置(y点)
+#define SUBITEM_TOP    26.5f   //整个的subitem的顶点位置(y点)
 
 
 /*********************** 颜色 *************************/
 
-
-
-//背景色   深蓝色
-#define BACKGROUNDCOLOR [UIColor colorWithRed:0.05 green:0.2 blue:0.35 alpha:1]
-
 //选中颜色  浅红色
 #define SELECTCOLOR UIColorFromHex(0xe3515b,1)
-
-//选错的颜色  红色
-#define WRONGCOLOR [UIColor colorWithRed:1 green:0 blue:0 alpha:1]
-
 
 //圆圈颜色，白色半透明
 #define CIRCLECOLOR UIColorFromHex(0xffffff,0.57)
@@ -65,6 +56,7 @@ static  NSString    * GesturePwdInputNewPwdStr = @"请输入新密码";
 static  NSString    * GesturePwdConfirmPwdStr = @"验证手势密码图案，至少连接4个点";
 static  NSString    * GesturePwdConfirmSuccessStr = @"登录成功";
 static  NSString    * GesturePwdConfirmFailureStr = @"密码错误，还可以输入%d次";
+static  NSString    * GesturePwdConfirmFailureTooMany = @"错误次数太多，请稍后重试";
 
 
 

@@ -45,7 +45,7 @@
     if (_outterLayer==nil) {
         _outterLayer = [CAShapeLayer layer];
         _outterLayer.frame = CGRectMake( (self.frame.size.width-ITEMRADIUS_OUTTER)/2 , (self.frame.size.width-ITEMRADIUS_OUTTER)/2 , ITEMRADIUS_OUTTER , ITEMRADIUS_OUTTER);
-        _outterLayer.fillColor = BACKGROUNDCOLOR.CGColor;
+        _outterLayer.fillColor = [UIColor clearColor].CGColor;
         _outterLayer.strokeColor = [UIColor whiteColor].CGColor;
         _outterLayer.lineWidth = ITEMRADIUS_LINEWIDTH;
         
@@ -65,8 +65,8 @@
         
         UIBezierPath *path = [UIBezierPath bezierPath];
         [path moveToPoint:CGPointMake(self.frame.size.width/2 , self.innerLayer.frame.origin.y-10 )];
-        [path addLineToPoint:CGPointMake(self.frame.size.width/2-5, self.innerLayer.frame.origin.y-3)];
-        [path addLineToPoint:CGPointMake(self.frame.size.width/2+5, self.innerLayer.frame.origin.y-3)];
+        [path addLineToPoint:CGPointMake(self.frame.size.width/2-8, self.innerLayer.frame.origin.y-1)];
+        [path addLineToPoint:CGPointMake(self.frame.size.width/2+8, self.innerLayer.frame.origin.y-1)];
         _triangleLayer.path = path.CGPath;
     
     }

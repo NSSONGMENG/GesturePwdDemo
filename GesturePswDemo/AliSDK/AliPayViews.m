@@ -11,6 +11,7 @@
 #import "Header.h"
 #import "KeychainData.h"
 #import "AlipaySubItem.h"
+#import "Masonry.h"
 
 #define KscreenHeight [UIScreen mainScreen].bounds.size.height
 #define KscreenWidth [UIScreen mainScreen].bounds.size.width
@@ -23,52 +24,19 @@
 @property(nonatomic , strong)AlipaySubItem *subItemsss;
 @property(nonatomic , strong)UILabel *tfLabel;
 @property(nonatomic , assign)CGPoint lastPoint;
+//验证次数
+@property (nonatomic, assign) int confirmCount;
+
 @end
-
-
 
 @implementation AliPayViews
 
-- (NSMutableArray *)btnArray
-{
-    if (_btnArray==nil) {
-        _btnArray = [NSMutableArray array];
-    }
-    return _btnArray;
-}
 
-- (UILabel *)tfLabel
-{
-    if (_tfLabel==nil) {
-        _tfLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, self.subItemsss.frame.origin.y+SUBITEMTOTALWH+41, KscreenWidth , 30)];
-        _tfLabel.textAlignment = NSTextAlignmentCenter;
-        _tfLabel.textColor = [UIColor yellowColor];
-        _tfLabel.font= [UIFont fontWithName:@"PingFangHK-Semibold" size:15];
-        _tfLabel.text = GesturePwdSettingStr;
-        [self addSubview:_tfLabel];
-    }
-    return _tfLabel;
-}
-
-
-- (AlipaySubItem *)subItemsss
-{
-    if (_subItemsss==nil) {
-        _subItemsss = [[AlipaySubItem alloc] initWithFrame:CGRectMake((self.frame.size.width-SUBITEMTOTALWH)/2, SUBITEM_TOP, SUBITEMTOTALWH, SUBITEMTOTALWH)];
-        [self addSubview:_subItemsss];
-    }
-    return _subItemsss;
-}
-
-
-
-- (instancetype)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        
+- (instancetype)initWithModel:(GesturePWDModel)model{
+    if (self = [super init]) {
+        _gestureModel = model;
         [self initViews];
-        
+        _confirmCount = 5;
     }
     return self;
 }
@@ -76,7 +44,7 @@
 #pragma mark - init
 - (void)initViews
 {
-    self.backgroundColor = BACKGROUNDCOLOR;
+    self.backgroundColor = [UIColor clearColor];
     
     /*******  上面的9个小点 ******/
     self.subItemsss.backgroundColor = [UIColor clearColor];
@@ -103,10 +71,14 @@
 {
     [super touchesBegan:touches withEvent:event];
     
-    CGPoint point = [self touchLocation:touches];
-    
-    [self isContainItem:point];
-    
+    if (_confirmCount > 0){
+        CGPoint point = [self touchLocation:touches];
+        
+        [self isContainItem:point];
+    }
+    else{
+        [self shake:_tfLabel];
+    }
 }
 
 
@@ -117,6 +89,8 @@
 {
     [super touchesMoved:touches withEvent:event];
     
+    if (_confirmCount <= 0) return;
+    
     CGPoint point = [self touchLocation:touches];
     
     [self isContainItem:point];
@@ -124,7 +98,6 @@
     [self touchMove_triangleAction];
     
     [self setNeedsDisplay];
-
 }
 
 
@@ -135,13 +108,12 @@
 {
     [super touchesEnded:touches withEvent:event];
     
+    if (_confirmCount <= 0) return;
+    
     [self touchEndAction];
     
     [self setNeedsDisplay];
-    
-
 }
-
 
 
 #pragma mark - UILabel  property
@@ -165,10 +137,6 @@
     
 }
 
-
-
-
-
 - (void)setGestureModel:(GesturePWDModel)gestureModel
 {
     _gestureModel = gestureModel;
@@ -176,7 +144,7 @@
 
     switch (gestureModel) {
             
-        case GesturePWDModelAlertPwdModel:
+        case GesturePWDModelResetPwdModel:
             //修改密码
             self.tfLabel.text = GesturePwdInputOldPwdStr; //请输入原始密码
             break;
@@ -186,7 +154,7 @@
             self.tfLabel.text = GesturePwdSettingStr;        //请滑动设置密码
             break;
             
-        case GesturePWDModelValidatePwdModel:
+        case GesturePWDModelConfirmPwdModel:
             //验证密码
             self.tfLabel.text = GesturePwdConfirmPwdStr; //验证密码
             break;
@@ -219,8 +187,12 @@
         int column = i % 3;
         
         CGFloat spaceFloat = 40.f;             //每个item的间距是等宽的
+        CGFloat topOffset = 60.f;
+        if (_gestureModel == GesturePWDModelConfirmPwdModel) {
+            topOffset = 36.f;
+        }
         CGFloat pointX     = spaceFloat*(column+1)+ITEMWH*column;   //起点X
-        CGFloat pointY     = ITEM_TOTAL_POSITION + ITEMWH*row + spaceFloat*row;     //起点Y
+        CGFloat pointY     = topOffset + ITEMWH*row + spaceFloat*row;     //起点Y
         
         /**
          *  对每一个item的frame的布局
@@ -232,7 +204,12 @@
         item.tag = ITEMTAG + i ;
         [self addSubview:item];
         
-        //NSLog(@"item.frame = [%@]", NSStringFromCGPoint(item.center));
+        [item mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self.tfLabel.mas_bottom).offset(pointY);
+            make.left.equalTo(self).offset(pointX);
+            make.width.height.mas_equalTo(ITEMWH);
+        }];
+        
     }
 }
 
@@ -263,9 +240,7 @@
                 item.model = selectStyle;
             }
         }
-        
     }
-    
 }
 
 - (void)touchMove_triangleAction
@@ -301,11 +276,7 @@
                 CGFloat y2 = lastP.y;
 
                 [lastItem judegeDirectionActionx1:x1 y1:y1 x2:x2 y2:y2 isHidden:NO];
-
             }
-            
-            
-            
         }
     }
 }
@@ -320,6 +291,7 @@
         [itemssss judegeDirectionActionx1:0 y1:0 x2:0 y2:0 isHidden:NO];
     }
     
+    if ([self.btnArray count] == 0) return;
     
     // if (判断格式少于4个点) [处理密码数据]
     if ([self judgeFormat]) [self setPswMethod:[self getResultPwd]] ;
@@ -360,6 +332,7 @@
             self.tfLabel.text = GesturePwdConfirmPwdStr;
         }
         [self shake:self.tfLabel];
+        _confirmCount --;
         return NO;
     }
     
@@ -384,9 +357,6 @@
     
     return (NSString *)resultStr;
 }
-
-
-
 
 #pragma mark - 处理修改，设置，登录的业务逻辑
 - (void)setPswMethod:(NSString *)resultStr
@@ -426,7 +396,6 @@
 }
 
 
-
 /**
  *  设置密码
  */
@@ -444,7 +413,9 @@
             
             self.tfLabel.text = GesturePwdSetSuccessStr;
             self.tfLabel.textColor =  [UIColor whiteColor];
-            [self performSelector:@selector(blockAction:) withObject:resultStr afterDelay:.8];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self blockAction:resultStr];
+            });
             
         } else {
             
@@ -466,7 +437,7 @@
     /**
      *  修改
      */
-    if (self.gestureModel == GesturePWDModelAlertPwdModel)
+    if (self.gestureModel == GesturePWDModelResetPwdModel)
     {
         BOOL isValidate = [KeychainData isSecondInputRight:resultStr];
         if (isValidate) {
@@ -495,17 +466,24 @@
 {
     
     
-    if (self.gestureModel == GesturePWDModelValidatePwdModel) {
+    if (self.gestureModel == GesturePWDModelConfirmPwdModel) {
         BOOL isValidate = [KeychainData isSecondInputRight:resultStr];
         if (isValidate) {
             //如果验证成功
             self.tfLabel.text = GesturePwdConfirmSuccessStr;
             self.tfLabel.textColor = [UIColor whiteColor];
-            [self performSelector:@selector(blockAction:) withObject:resultStr afterDelay:.8];
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.8 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [self blockAction:resultStr];
+            });
             
         } else {
             //失败
-            self.tfLabel.text = GesturePwdConfirmFailureStr;
+            if (_confirmCount > 0)  _confirmCount -- ;
+            NSString    * alertStr = [NSString stringWithFormat:@"密码错误，还可以输入%d次",_confirmCount];
+            if (_confirmCount == 0) {
+                alertStr = GesturePwdConfirmFailureTooMany;
+            }
+            self.tfLabel.text = alertStr;
             self.tfLabel.textColor = GESTUREPSW_WRONGCOLOR;
             [self shake:self.tfLabel];
             color = GESTUREPSW_WRONGCOLOR;
@@ -530,8 +508,57 @@
 
 
 
+#pragma mark - getter
+
+- (NSMutableArray *)btnArray
+{
+    if (_btnArray==nil) {
+        _btnArray = [NSMutableArray array];
+    }
+    return _btnArray;
+}
+
+- (UILabel *)tfLabel
+{
+    if (_tfLabel==nil) {
+        _tfLabel = [UILabel new];
+        _tfLabel.textAlignment = NSTextAlignmentCenter;
+        _tfLabel.textColor = [UIColor yellowColor];
+        _tfLabel.font= [UIFont fontWithName:@"PingFangHK-Semibold" size:15];
+        _tfLabel.text = GesturePwdSettingStr;
+        [self addSubview:_tfLabel];
+        
+        [_tfLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            if (_gestureModel == GesturePWDModelConfirmPwdModel) {
+                make.top.equalTo(self);
+            }
+            else{
+                make.top.equalTo(self.subItemsss.mas_bottom).offset(41);
+            }
+            make.centerX.equalTo(self);
+        }];
+    }
+    return _tfLabel;
+}
 
 
+- (AlipaySubItem *)subItemsss
+{
+    if (_subItemsss==nil) {
+        _subItemsss = [AlipaySubItem new];
+        [_subItemsss setNeedsDisplay];
+        [self addSubview:_subItemsss];
+        
+        [_subItemsss mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.top.equalTo(self).offset(SUBITEM_TOP);
+            make.centerX.equalTo(self);
+            make.width.height.mas_equalTo(SUBITEMTOTALWH);
+        }];
+        
+        _subItemsss.hidden = _gestureModel == GesturePWDModelConfirmPwdModel;
+    }
+    return _subItemsss;
+}
 
 
 #pragma mark - drawRect
@@ -561,13 +588,7 @@
     [path setLineWidth:ITEMRADIUS_LINEWIDTH];
     [GESTUREPSW_ALERT_TEXTCOLOR setStroke];
     [path stroke];
-    
-    
 }
-
-
-
-
 
 
 @end
