@@ -1,15 +1,15 @@
 //
-//  GesturePswController.m
+//  GesturePwdVC.m
 //  GesturePswDemo
 //
 //  Created by 宋猛 on 2017/3/30.
 //  Copyright © 2017年 宋猛. All rights reserved.
 //
 
-#import "GesturePswController.h"
+#import "GesturePwdVC.h"
 #import "Masonry.h"
-#import "AliPayViews.h"
-#import "Header.h"
+#import "GesturePwdView.h"
+#import "GesturePwdHeader.h"
 #import "SVProgressHUD.h"
 #import <LocalAuthentication/LocalAuthentication.h>
 
@@ -21,9 +21,9 @@
 #define KimgViewBorderWidth     1.f
 #define KimgViewBorderColor     UIColorFromHex(0xd4d4d4,1).CGColor
 
-@interface GesturePswController ()
+@interface GesturePwdVC ()
 
-@property (nonatomic, strong) AliPayViews   * gestureView;
+@property (nonatomic, strong) GesturePwdView   * gestureView;
 @property (nonatomic, strong) UIImageView   * imgView;
 @property (nonatomic, strong) UILabel       * nickNameLab;
 @property (nonatomic, strong) UILabel       * accountLab;
@@ -33,7 +33,7 @@
 
 @end
 
-@implementation GesturePswController
+@implementation GesturePwdVC
 
 
 /**
@@ -43,14 +43,14 @@
  
  @return obj
  */
-- (instancetype)initWithState:(GesturePswControllerState)state{
+- (instancetype)initWithState:(GesturePwdVCState)state{
     if (self = [super init]) {
         _state = state;
     }
     return self;
 }
 
-- (instancetype)initWithGesturePswControllerState:(GesturePswControllerState)state
+- (instancetype)initWithGesturePwdVCState:(GesturePwdVCState)state
                                          nickName:(NSString *)nickName
                                           iconUrl:(NSString *)iconUrl
                                        accountStr:(NSString *)accountStr{
@@ -76,17 +76,17 @@
     self.view.backgroundColor = UIColorFromHex(0x4c6072, 1);
     
     switch (_state) {
-        case GesturePswControllerStateSetting:{
+        case GesturePwdVCStateSetting:{
             [self createSettingPage];
             self.title = @"设置手势密码";
             break;
         }
-        case GesturePswControllerStateReset:{
+        case GesturePwdVCStateReset:{
             [self createSettingPage];
             self.title = @"重置手势密码";
             break;
         }
-        case GesturePswControllerStateConfirmFingerPwd:{
+        case GesturePwdVCStateConfirmFingerPwd:{
             [self createConfirmFingerPwdPage];
             break;
         }
@@ -96,11 +96,12 @@
     }
 }
 
+#pragma mark -
 #pragma mark - UI
 //设置手势密码
 - (void)createSettingPage{
     [self.view addSubview:self.gestureView];
-    if (_state == GesturePswControllerStateReset) {
+    if (_state == GesturePwdVCStateReset) {
         self.gestureView.gestureModel = GesturePWDModelResetPwdModel;
     }
     else{
@@ -159,7 +160,8 @@
     }];
 }
 
-//指纹验证
+#pragma mark -
+#pragma mark - 指纹验证
 - (void)evaluatePolicy{
      LAContext *context = [[LAContext alloc] init];
      
@@ -195,19 +197,19 @@
 
 #pragma mark - getter
 //手势视图
-- (AliPayViews *)gestureView{
+- (GesturePwdView *)gestureView{
     if (!_gestureView) {
         switch (_state) {
-            case GesturePswControllerStateSetting:
-                _gestureView = [[AliPayViews alloc] initWithModel:GesturePWDModelSetPwdModel];
+            case GesturePwdVCStateSetting:
+                _gestureView = [[GesturePwdView alloc] initWithModel:GesturePWDModelSetPwdModel];
                 break;
-            case GesturePswControllerStateConfirm:
-                _gestureView = [[AliPayViews alloc] initWithModel:GesturePWDModelConfirmPwdModel];
+            case GesturePwdVCStateConfirm:
+                _gestureView = [[GesturePwdView alloc] initWithModel:GesturePWDModelConfirmPwdModel];
                 break;
-            case GesturePswControllerStateReset:
-                _gestureView = [[AliPayViews alloc] initWithModel:GesturePWDModelResetPwdModel];
+            case GesturePwdVCStateReset:
+                _gestureView = [[GesturePwdView alloc] initWithModel:GesturePWDModelResetPwdModel];
                 break;
-            case GesturePswControllerStateConfirmFingerPwd:
+            case GesturePwdVCStateConfirmFingerPwd:
                 _gestureView = nil;
                 break;
         }

@@ -8,7 +8,7 @@
 
 #import "ViewController.h"
 #import "Masonry.h"
-#import "GesturePswController.h"
+#import "GesturePwdVC.h"
 #import <LocalAuthentication/LocalAuthentication.h>
 #import "SVProgressHUD.h"
 
@@ -84,10 +84,10 @@
 
 - (void)fpBtnAction:(UIButton *)btn{
     if ([self evaluatePolicy]){
-        GesturePswController    * vc = [GesturePswController new];
-        vc.state = GesturePswControllerStateConfirmFingerPwd;
+        GesturePwdVC    * vc = [GesturePwdVC new];
+        vc.state = GesturePwdVCStateConfirmFingerPwd;
         
-        [self.navigationController pushViewController:[GesturePswController new] animated:YES];
+        [self.navigationController pushViewController:[GesturePwdVC new] animated:YES];
     }else{
         [SVProgressHUD showInfoWithStatus:@"指纹解锁不可用" maskType:SVProgressHUDMaskTypeBlack];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -97,14 +97,14 @@
 }
 
 - (void)btnAction:(UIButton *)btn{
-    GesturePswController    * vc = [GesturePswController new];
-    vc.state = GesturePswControllerStateSetting;
+    GesturePwdVC    * vc = [GesturePwdVC new];
+    vc.state = GesturePwdVCStateSetting;
     
-    [self.navigationController pushViewController:[GesturePswController new] animated:YES];
+    [self.navigationController pushViewController:[GesturePwdVC new] animated:YES];
 }
 
 - (void)btn1Action:(UIButton *)btn{
-    GesturePswController    * vc = [[GesturePswController alloc] initWithGesturePswControllerState:GesturePswControllerStateConfirm
+    GesturePwdVC    * vc = [[GesturePwdVC alloc] initWithGesturePwdVCState:GesturePwdVCStateConfirm
                                                                                           nickName:@"ZhangSan"
                                                                                            iconUrl:@""
                                                                                         accountStr:@"20170330"];
@@ -113,8 +113,8 @@
 }
 
 - (void)btn2Action:(UIButton *)btn{
-    GesturePswController    * vc = [GesturePswController new];
-    vc.state = GesturePswControllerStateReset;
+    GesturePwdVC    * vc = [GesturePwdVC new];
+    vc.state = GesturePwdVCStateReset;
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -1,5 +1,5 @@
 //
-//  AlipaySubItem.h
+//  GesturePwdSubItem.h
 //  AliPayDemo
 //
 //  Created by pg on 15/7/14.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AlipaySubItem : UIView
+@interface GesturePwdSubItem : UIView
 
 
 - (void)resultArr:(NSArray *)array fillColor:(UIColor *)color;

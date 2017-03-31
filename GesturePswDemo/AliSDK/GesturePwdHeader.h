@@ -1,13 +1,13 @@
 //
-//  Header.h
+//  GesturePwdHeader.h
 //  AliPayDemo
 //
 //  Created by pg on 15/7/10.
 //  Copyright (c) 2015年 pg. All rights reserved.
 //
 
-#ifndef AliPayDemo_Header_h
-#define AliPayDemo_Header_h
+#ifndef AliPayDemo_GesturePwdHeader_h
+#define AliPayDemo_GesturePwdHeader_h
 
 
 #endif

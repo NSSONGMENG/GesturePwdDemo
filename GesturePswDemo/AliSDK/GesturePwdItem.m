@@ -1,18 +1,18 @@
 //
-//  AliPayItem.m
+//  GesturePwdItem.m
 //  AliPayDemo
 //
 //  Created by pg on 15/7/10.
 //  Copyright (c) 2015年 pg. All rights reserved.
 //
 
-#import "AliPayItem.h"
-#import "Header.h"
+#import "GesturePwdItem.h"
+#import "GesturePwdHeader.h"
 
 
 
 
-@implementation AliPayItem
+@implementation GesturePwdItem
 
 - (instancetype)initWithFrame:(CGRect)frame
 {

@@ -1,5 +1,5 @@
 //
-//  KeychainData.h
+//  GesturePWdData.h
 //  AliPayDemo
 //
 //  Created by pg on 15/7/15.
@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface KeychainData : NSObject
+@interface GesturePWdData : NSObject
 
 /****** 是否是第一次输入 ******/
 + (BOOL)isFirstInput:(NSString *)str;
@@ -30,7 +30,7 @@
 
 
 
-/****   KeychainData.m  *****/
+/****   GesturePWdData.m  *****/
 /*****************   根据keychain官网的，封装，增，取，删。都只需一句话  *********************/
 + (void)setObject:(id)object forKey:(id)key;
 + (id)objectForKey:(id)key;

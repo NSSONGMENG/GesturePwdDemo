@@ -1,5 +1,5 @@
 //
-//  AliPayViews.h
+//  GesturePwdView.h
 //  AliPayDemo
 //
 //  Created by pg on 15/7/9.
@@ -19,7 +19,7 @@ typedef enum {
 typedef void (^PasswordBlock) (NSString *pswString);
 
 
-@interface AliPayViews : UIView
+@interface GesturePwdView : UIView
 @property(nonatomic , assign)GesturePWDModel gestureModel;
 @property(nonatomic , copy)PasswordBlock block;
 

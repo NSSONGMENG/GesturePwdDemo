@@ -1,21 +1,21 @@
 //
-//  AlipaySubItem.m
+//  GesturePwdSubItem.m
 //  AliPayDemo
 //
 //  Created by pg on 15/7/14.
 //  Copyright (c) 2015年 pg. All rights reserved.
 //
 
-#import "AlipaySubItem.h"
-#import "Header.h"
-#define ALIPAYSUBITEMTAG 33
+#import "GesturePwdSubItem.h"
+#import "GesturePwdHeader.h"
+#define GesturePwdSubItemTAG 33
 
-@interface AlipaySubItem()
+@interface GesturePwdSubItem()
 //@property(nonatomic , strong)CAShapeLayer *shape;
 @end
 
 
-@implementation AlipaySubItem
+@implementation GesturePwdSubItem
 
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -40,7 +40,7 @@
         
 
         UIView *myView = [[UIView alloc] initWithFrame:CGRectMake( posX , posY , SUBITEMWH , SUBITEMWH)];
-        myView.tag = i + ALIPAYSUBITEMTAG;
+        myView.tag = i + GesturePwdSubItemTAG;
         [self addSubview:myView];
         
         
@@ -94,7 +94,7 @@
         if ([array containsObject:[NSString stringWithFormat:@"%lu", (unsigned long)idx]])
         {
             // 如果array里包含idx，填充为白色
-            UIView *myView = (UIView *)[self viewWithTag:(idx+ALIPAYSUBITEMTAG)];
+            UIView *myView = (UIView *)[self viewWithTag:(idx+GesturePwdSubItemTAG)];
             [self drawCircle:myView color:color];
             
             [self performSelector:@selector(drawCleanCircle:) withObject:myView afterDelay:1 ];

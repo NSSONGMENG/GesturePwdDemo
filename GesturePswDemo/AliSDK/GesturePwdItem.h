@@ -1,5 +1,5 @@
 //
-//  AliPayItem.h
+//  GesturePwdItem.h
 //  AliPayDemo
 //
 //  Created by pg on 15/7/10.
@@ -16,7 +16,7 @@ typedef enum {
 
 
 
-@interface AliPayItem : UIView
+@interface GesturePwdItem : UIView
 
 @property(nonatomic , assign)selectStyleModel model;
 

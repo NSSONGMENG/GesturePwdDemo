@@ -1,5 +1,5 @@
 //
-//  GesturePswController.h
+//  GesturePwdVC.h
 //  GesturePswDemo
 //
 //  Created by 宋猛 on 2017/3/30.
@@ -9,13 +9,14 @@
 
 #import <UIKit/UIKit.h>
 
-typedef NS_ENUM(NSInteger, GesturePswControllerState) {
-    GesturePswControllerStateSetting,   //设置手势密码
-    GesturePswControllerStateConfirm,   //验证手势密码
-    GesturePswControllerStateReset,     //重置手势密码
-    GesturePswControllerStateConfirmFingerPwd,  //验证指纹密码
+typedef NS_ENUM(NSInteger, GesturePwdVCState) {
+    GesturePwdVCStateSetting,   //设置手势密码
+    GesturePwdVCStateConfirm,   //验证手势密码
+    GesturePwdVCStateReset,     //重置手势密码
+    GesturePwdVCStateConfirmFingerPwd,  //验证指纹密码
 };
-@interface GesturePswController : UIViewController
+
+@interface GesturePwdVC : UIViewController
 
 
 /** 用户头像url */
@@ -28,17 +29,16 @@ typedef NS_ENUM(NSInteger, GesturePswControllerState) {
 @property (nonatomic, copy) NSString    * accountStr;
 
 /** 页面类型，设置or验证 */
-@property (nonatomic, assign) GesturePswControllerState state;
+@property (nonatomic, assign) GesturePwdVCState state;
 
 
 /**
  初始化方法
 
  @param state 页面类型
- 
  @return obj
  */
-- (instancetype)initWithState:(GesturePswControllerState)state;
+- (instancetype)initWithState:(GesturePwdVCState)state;
 
 /**
  初始化方法
@@ -49,7 +49,7 @@ typedef NS_ENUM(NSInteger, GesturePswControllerState) {
  @param accountStr 账号字符串
  @return obj
  */
-- (instancetype)initWithGesturePswControllerState:(GesturePswControllerState)state
+- (instancetype)initWithGesturePwdVCState:(GesturePwdVCState)state
                                          nickName:(NSString *)nickName
                                           iconUrl:(NSString *)iconUrl
                                        accountStr:(NSString *)accountStr;

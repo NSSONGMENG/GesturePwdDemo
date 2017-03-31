@@ -1,16 +1,16 @@
 //
-//  AliPayViews.m
+//  GesturePwdView.m
 //  AliPayDemo
 //
 //  Created by pg on 15/7/9.
 //  Copyright (c) 2015年 pg. All rights reserved.
 //
 
-#import "AliPayViews.h"
-#import "AliPayItem.h"
-#import "Header.h"
-#import "KeychainData.h"
-#import "AlipaySubItem.h"
+#import "GesturePwdView.h"
+#import "GesturePwdItem.h"
+#import "GesturePwdHeader.h"
+#import "GesturePWdData.h"
+#import "GesturePwdSubItem.h"
 #import "Masonry.h"
 
 #define KscreenHeight [UIScreen mainScreen].bounds.size.height
@@ -18,10 +18,10 @@
 
 #define ITEMTAG 122
 
-@interface AliPayViews()
+@interface GesturePwdView()
 @property(nonatomic , strong)NSMutableArray *btnArray;
 @property(nonatomic , assign)CGPoint movePoint;
-@property(nonatomic , strong)AlipaySubItem *subItemsss;
+@property(nonatomic , strong)GesturePwdSubItem *subItemsss;
 @property(nonatomic , strong)UILabel *tfLabel;
 @property(nonatomic , assign)CGPoint lastPoint;
 //验证次数
@@ -29,7 +29,7 @@
 
 @end
 
-@implementation AliPayViews
+@implementation GesturePwdView
 
 
 - (instancetype)initWithModel:(GesturePWDModel)model{
@@ -161,7 +161,7 @@
             
         case GesturePWDModelDeletePwdModel:
             //删除密码
-            [KeychainData forgotPsw];
+            [GesturePWdData forgotPsw];
             break;
             
         default:
@@ -197,7 +197,7 @@
         /**
          *  对每一个item的frame的布局
          */
-        AliPayItem *item = [[AliPayItem alloc] initWithFrame:CGRectMake( pointX  , pointY , ITEMWH, ITEMWH)];
+        GesturePwdItem *item = [[GesturePwdItem alloc] initWithFrame:CGRectMake( pointX  , pointY , ITEMWH, ITEMWH)];
         item.userInteractionEnabled = YES;
         item.backgroundColor = [UIColor clearColor];
         item.isSelect = NO;
@@ -228,9 +228,9 @@
 
 - (void)isContainItem:(CGPoint)point
 {
-    for (AliPayItem *item  in self.subviews)
+    for (GesturePwdItem *item  in self.subviews)
     {
-        if (![item isKindOfClass:[AlipaySubItem class]] && [item isKindOfClass:[AliPayItem class]])
+        if (![item isKindOfClass:[GesturePwdSubItem class]] && [item isKindOfClass:[GesturePwdItem class]])
         {
             BOOL isContain = CGRectContainsPoint(item.frame, point);
             if (isContain && item.isSelect==NO)
@@ -256,9 +256,9 @@
 
             CGPoint lastP ;
             CGPoint lastTwoP;
-            AliPayItem *lastItem;
+            GesturePwdItem *lastItem;
             
-            for (AliPayItem *item  in self.btnArray)
+            for (GesturePwdItem *item  in self.btnArray)
             {
                 if (item.tag-ITEMTAG == lastTag.intValue)
                 {
@@ -286,7 +286,7 @@
  */
 - (void)touchEndAction
 {
-    for (AliPayItem *itemssss in self.btnArray)
+    for (GesturePwdItem *itemssss in self.btnArray)
     {
         [itemssss judegeDirectionActionx1:0 y1:0 x2:0 y2:0 isHidden:NO];
     }
@@ -302,9 +302,9 @@
     
     
     // 选中样式
-    for (AliPayItem *item  in self.subviews)
+    for (GesturePwdItem *item  in self.subviews)
     {
-        if (![item isKindOfClass:[AlipaySubItem class]] && [item isKindOfClass:[AliPayItem class]])
+        if (![item isKindOfClass:[GesturePwdSubItem class]] && [item isKindOfClass:[GesturePwdItem class]])
         {
             item.isSelect = NO;
             item.model = normalStyle;
@@ -346,9 +346,9 @@
 {
     NSMutableString *resultStr = [NSMutableString string];
     
-    for (AliPayItem *item  in self.btnArray)
+    for (GesturePwdItem *item  in self.btnArray)
     {
-        if (![item isKindOfClass:[AlipaySubItem class]] && [item isKindOfClass:[AliPayItem class]])
+        if (![item isKindOfClass:[GesturePwdSubItem class]] && [item isKindOfClass:[GesturePwdItem class]])
         {
             [resultStr appendString:@"A"];
             [resultStr appendString:[NSString stringWithFormat:@"%ld", (long)item.tag-ITEMTAG]];
@@ -362,7 +362,7 @@
 - (void)setPswMethod:(NSString *)resultStr
 {
     //没有任何记录，第一次登录
-    BOOL isSaveBool = [KeychainData isFirstInput:resultStr];
+    BOOL isSaveBool = [GesturePWdData isFirstInput:resultStr];
     
     //默认为蓝色
     UIColor *color = GESTUREPSW_ALERT_TEXTCOLOR;
@@ -407,7 +407,7 @@
     if (self.gestureModel == GesturePWDModelSetPwdModel) {
         
         // isRight == YES 2次的密码相同
-        BOOL isRight = [KeychainData isSecondInputRight:resultStr];
+        BOOL isRight = [GesturePWdData isSecondInputRight:resultStr];
         if (isRight) {
             // 验证成功
             
@@ -439,11 +439,11 @@
      */
     if (self.gestureModel == GesturePWDModelResetPwdModel)
     {
-        BOOL isValidate = [KeychainData isSecondInputRight:resultStr];
+        BOOL isValidate = [GesturePWdData isSecondInputRight:resultStr];
         if (isValidate) {
             
             //如果验证成功
-            [KeychainData forgotPsw];
+            [GesturePWdData forgotPsw];
             self.tfLabel.text = GesturePwdInputNewPwdStr;
             self.tfLabel.textColor = [UIColor whiteColor];
             _gestureModel = GesturePWDModelSetPwdModel;
@@ -467,7 +467,7 @@
     
     
     if (self.gestureModel == GesturePWDModelConfirmPwdModel) {
-        BOOL isValidate = [KeychainData isSecondInputRight:resultStr];
+        BOOL isValidate = [GesturePWdData isSecondInputRight:resultStr];
         if (isValidate) {
             //如果验证成功
             self.tfLabel.text = GesturePwdConfirmSuccessStr;
@@ -542,10 +542,10 @@
 }
 
 
-- (AlipaySubItem *)subItemsss
+- (GesturePwdSubItem *)subItemsss
 {
     if (_subItemsss==nil) {
-        _subItemsss = [AlipaySubItem new];
+        _subItemsss = [GesturePwdSubItem new];
         [_subItemsss setNeedsDisplay];
         [self addSubview:_subItemsss];
         
@@ -568,7 +568,7 @@
 
     for (int i=0; i<self.btnArray.count; i++)
     {
-        AliPayItem *item = (AliPayItem *)self.btnArray[i];
+        GesturePwdItem *item = (GesturePwdItem *)self.btnArray[i];
         if (i==0)
         {
             [path moveToPoint:item.center];

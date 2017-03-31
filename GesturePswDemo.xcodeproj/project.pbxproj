@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5F86CB871E8CF4A8007C26BA /* AliPayItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F86CB7D1E8CF4A8007C26BA /* AliPayItem.m */; };
-		5F86CB881E8CF4A8007C26BA /* AlipaySubItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F86CB7F1E8CF4A8007C26BA /* AlipaySubItem.m */; };
-		5F86CB891E8CF4A8007C26BA /* AliPayViews.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F86CB811E8CF4A8007C26BA /* AliPayViews.m */; };
-		5F86CB8A1E8CF4A8007C26BA /* KeychainData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F86CB841E8CF4A8007C26BA /* KeychainData.m */; };
+		5F86CB871E8CF4A8007C26BA /* GesturePwdItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F86CB7D1E8CF4A8007C26BA /* GesturePwdItem.m */; };
+		5F86CB881E8CF4A8007C26BA /* GesturePwdSubItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F86CB7F1E8CF4A8007C26BA /* GesturePwdSubItem.m */; };
+		5F86CB891E8CF4A8007C26BA /* GesturePwdView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F86CB811E8CF4A8007C26BA /* GesturePwdView.m */; };
+		5F86CB8A1E8CF4A8007C26BA /* GesturePWdData.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F86CB841E8CF4A8007C26BA /* GesturePWdData.m */; };
 		5F8AE8651E8DEAAD005A6F18 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F8AE8641E8DEAAD005A6F18 /* LocalAuthentication.framework */; };
 		5FBAC8381E8CC59E00C03B2F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBAC8371E8CC59E00C03B2F /* main.m */; };
 		5FBAC83B1E8CC59E00C03B2F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBAC83A1E8CC59E00C03B2F /* AppDelegate.m */; };
@@ -18,7 +18,7 @@
 		5FBAC8411E8CC59E00C03B2F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FBAC83F1E8CC59E00C03B2F /* Main.storyboard */; };
 		5FBAC8431E8CC59E00C03B2F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5FBAC8421E8CC59E00C03B2F /* Assets.xcassets */; };
 		5FBAC8461E8CC59E00C03B2F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FBAC8441E8CC59E00C03B2F /* LaunchScreen.storyboard */; };
-		5FBAC84F1E8CC5C900C03B2F /* GesturePswController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBAC84E1E8CC5C900C03B2F /* GesturePswController.m */; };
+		5FBAC84F1E8CC5C900C03B2F /* GesturePwdVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FBAC84E1E8CC5C900C03B2F /* GesturePwdVC.m */; };
 		B9144B1C26AEFD4B67178E94 /* libPods-GesturePswDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5AD66ED0C3FE57B37187C228 /* libPods-GesturePswDemo.a */; };
 /* End PBXBuildFile section */
 
@@ -26,15 +26,15 @@
 		0273C4301067857533F12E41 /* Pods-GesturePswDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GesturePswDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-GesturePswDemo/Pods-GesturePswDemo.release.xcconfig"; sourceTree = "<group>"; };
 		4BED0607ED8ED863CD302ED3 /* Pods-GesturePswDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GesturePswDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GesturePswDemo/Pods-GesturePswDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		5AD66ED0C3FE57B37187C228 /* libPods-GesturePswDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GesturePswDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5F86CB7C1E8CF4A8007C26BA /* AliPayItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliPayItem.h; sourceTree = "<group>"; };
-		5F86CB7D1E8CF4A8007C26BA /* AliPayItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AliPayItem.m; sourceTree = "<group>"; };
-		5F86CB7E1E8CF4A8007C26BA /* AlipaySubItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlipaySubItem.h; sourceTree = "<group>"; };
-		5F86CB7F1E8CF4A8007C26BA /* AlipaySubItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlipaySubItem.m; sourceTree = "<group>"; };
-		5F86CB801E8CF4A8007C26BA /* AliPayViews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AliPayViews.h; sourceTree = "<group>"; };
-		5F86CB811E8CF4A8007C26BA /* AliPayViews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AliPayViews.m; sourceTree = "<group>"; };
-		5F86CB821E8CF4A8007C26BA /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
-		5F86CB831E8CF4A8007C26BA /* KeychainData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeychainData.h; sourceTree = "<group>"; };
-		5F86CB841E8CF4A8007C26BA /* KeychainData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeychainData.m; sourceTree = "<group>"; };
+		5F86CB7C1E8CF4A8007C26BA /* GesturePwdItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GesturePwdItem.h; sourceTree = "<group>"; };
+		5F86CB7D1E8CF4A8007C26BA /* GesturePwdItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GesturePwdItem.m; sourceTree = "<group>"; };
+		5F86CB7E1E8CF4A8007C26BA /* GesturePwdSubItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GesturePwdSubItem.h; sourceTree = "<group>"; };
+		5F86CB7F1E8CF4A8007C26BA /* GesturePwdSubItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GesturePwdSubItem.m; sourceTree = "<group>"; };
+		5F86CB801E8CF4A8007C26BA /* GesturePwdView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GesturePwdView.h; sourceTree = "<group>"; };
+		5F86CB811E8CF4A8007C26BA /* GesturePwdView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GesturePwdView.m; sourceTree = "<group>"; };
+		5F86CB821E8CF4A8007C26BA /* GesturePwdHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GesturePwdHeader.h; sourceTree = "<group>"; };
+		5F86CB831E8CF4A8007C26BA /* GesturePWdData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GesturePWdData.h; sourceTree = "<group>"; };
+		5F86CB841E8CF4A8007C26BA /* GesturePWdData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GesturePWdData.m; sourceTree = "<group>"; };
 		5F8AE8641E8DEAAD005A6F18 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		5FBAC8331E8CC59E00C03B2F /* GesturePswDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GesturePswDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5FBAC8371E8CC59E00C03B2F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -46,8 +46,8 @@
 		5FBAC8421E8CC59E00C03B2F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5FBAC8451E8CC59E00C03B2F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5FBAC8471E8CC59E00C03B2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5FBAC84D1E8CC5C900C03B2F /* GesturePswController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GesturePswController.h; sourceTree = "<group>"; };
-		5FBAC84E1E8CC5C900C03B2F /* GesturePswController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GesturePswController.m; sourceTree = "<group>"; };
+		5FBAC84D1E8CC5C900C03B2F /* GesturePwdVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GesturePwdVC.h; sourceTree = "<group>"; };
+		5FBAC84E1E8CC5C900C03B2F /* GesturePwdVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GesturePwdVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,15 +75,15 @@
 		5F86CB7B1E8CF4A8007C26BA /* AliSDK */ = {
 			isa = PBXGroup;
 			children = (
-				5F86CB7C1E8CF4A8007C26BA /* AliPayItem.h */,
-				5F86CB7D1E8CF4A8007C26BA /* AliPayItem.m */,
-				5F86CB7E1E8CF4A8007C26BA /* AlipaySubItem.h */,
-				5F86CB7F1E8CF4A8007C26BA /* AlipaySubItem.m */,
-				5F86CB801E8CF4A8007C26BA /* AliPayViews.h */,
-				5F86CB811E8CF4A8007C26BA /* AliPayViews.m */,
-				5F86CB821E8CF4A8007C26BA /* Header.h */,
-				5F86CB831E8CF4A8007C26BA /* KeychainData.h */,
-				5F86CB841E8CF4A8007C26BA /* KeychainData.m */,
+				5F86CB7C1E8CF4A8007C26BA /* GesturePwdItem.h */,
+				5F86CB7D1E8CF4A8007C26BA /* GesturePwdItem.m */,
+				5F86CB7E1E8CF4A8007C26BA /* GesturePwdSubItem.h */,
+				5F86CB7F1E8CF4A8007C26BA /* GesturePwdSubItem.m */,
+				5F86CB801E8CF4A8007C26BA /* GesturePwdView.h */,
+				5F86CB811E8CF4A8007C26BA /* GesturePwdView.m */,
+				5F86CB821E8CF4A8007C26BA /* GesturePwdHeader.h */,
+				5F86CB831E8CF4A8007C26BA /* GesturePWdData.h */,
+				5F86CB841E8CF4A8007C26BA /* GesturePWdData.m */,
 			);
 			path = AliSDK;
 			sourceTree = "<group>";
@@ -113,8 +113,8 @@
 				5FBAC83A1E8CC59E00C03B2F /* AppDelegate.m */,
 				5FBAC83C1E8CC59E00C03B2F /* ViewController.h */,
 				5FBAC83D1E8CC59E00C03B2F /* ViewController.m */,
-				5FBAC84D1E8CC5C900C03B2F /* GesturePswController.h */,
-				5FBAC84E1E8CC5C900C03B2F /* GesturePswController.m */,
+				5FBAC84D1E8CC5C900C03B2F /* GesturePwdVC.h */,
+				5FBAC84E1E8CC5C900C03B2F /* GesturePwdVC.m */,
 				5F86CB7B1E8CF4A8007C26BA /* AliSDK */,
 				5FBAC83F1E8CC59E00C03B2F /* Main.storyboard */,
 				5FBAC8421E8CC59E00C03B2F /* Assets.xcassets */,
@@ -265,13 +265,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5F86CB871E8CF4A8007C26BA /* AliPayItem.m in Sources */,
-				5F86CB8A1E8CF4A8007C26BA /* KeychainData.m in Sources */,
-				5F86CB881E8CF4A8007C26BA /* AlipaySubItem.m in Sources */,
+				5F86CB871E8CF4A8007C26BA /* GesturePwdItem.m in Sources */,
+				5F86CB8A1E8CF4A8007C26BA /* GesturePWdData.m in Sources */,
+				5F86CB881E8CF4A8007C26BA /* GesturePwdSubItem.m in Sources */,
 				5FBAC83E1E8CC59E00C03B2F /* ViewController.m in Sources */,
 				5FBAC83B1E8CC59E00C03B2F /* AppDelegate.m in Sources */,
-				5FBAC84F1E8CC5C900C03B2F /* GesturePswController.m in Sources */,
-				5F86CB891E8CF4A8007C26BA /* AliPayViews.m in Sources */,
+				5FBAC84F1E8CC5C900C03B2F /* GesturePwdVC.m in Sources */,
+				5F86CB891E8CF4A8007C26BA /* GesturePwdView.m in Sources */,
 				5FBAC8381E8CC59E00C03B2F /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

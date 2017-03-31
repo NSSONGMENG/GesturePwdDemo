@@ -1,17 +1,17 @@
 //
-//  KeychainData.m
+//  GesturePWdData.m
 //  AliPayDemo
 //
 //  Created by pg on 15/7/15.
 //  Copyright (c) 2015年 pg. All rights reserved.
 //
 
-#import "KeychainData.h"
+#import "GesturePWdData.h"
 #define KEYCHAIN_KEY  @"password_slider"
 
 
 
-@implementation KeychainData
+@implementation GesturePWdData
 
 
 + (void)setObject:(id)object forKey:(id)key{
